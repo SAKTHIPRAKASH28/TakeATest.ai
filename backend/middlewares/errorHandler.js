@@ -1,6 +1,6 @@
 const {statusCodes} = require('../constants')
 const errorHandler = (err, req, res, next)=>{
-    const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
+    const statusCode = res.statusCode  ? res.statusCode : 500;
     let title;
     switch(statusCode){
         case statusCodes.NOT_FOUND:
@@ -31,7 +31,7 @@ const errorHandler = (err, req, res, next)=>{
             stack: process.env.NODE_ENV === 'production' ? null : err.stack,
         }
     )
-    next()
+
 
 };
 
