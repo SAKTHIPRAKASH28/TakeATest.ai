@@ -41,7 +41,10 @@ module.exports.generatePaperController=async(req,res,next)=>{
         const response = await result.response;
         const text = response.text();
         chatHistory.push({ role: "model", parts: text });
-        res.send(await extractJson(text))
+        res
+        .status(201)
+        .send(await extractJson(text))
+        
     }
     catch(err){
         next(err)
